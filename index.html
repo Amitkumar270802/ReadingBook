@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- <script src="https://use.fontawesome.com/releases/v5.12.0/js/all.js"></script> -->
+    <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="pagination.css">
+    <link rel="stylesheet" href="cards.css">
+
+    <title>Document</title>
+</head>
+
+<style>
+    html,
+    body {
+        height: 95%;
+    }
+
+
+
+    .mr-2,
+    .mx-2 {
+        margin-right: 0.5rem !important;
+    }
+
+    .separator {
+        padding: 20px;
+    }
+
+    s label {
+        display: inline-block;
+        margin-bottom: 0.5rem;
+    }
+
+    .userInfoFields select {
+        width: 150px;
+    }
+
+    option {
+        font-weight: normal;
+        display: block;
+        white-space: nowrap;
+        min-height: 1.2em;
+        padding: 0px 2px 1px;
+    }
+
+    .custom-select {
+        display: inline-block;
+        width: 100%;
+        height: calc(2.25rem + 2px);
+        padding: 0.375rem 1.75rem 0.375rem 0.75rem;
+        line-height: 1.5;
+        color: #495057;
+        vertical-align: middle;
+        background-size: 8px 10px;
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
+
+
+    element.style {
+        padding-left: 32px;
+        font-size: 14px;
+    }
+
+    .searchField {
+        border-radius: 30px;
+    }
+
+    .searchField,
+    .searchPalField,
+    .bookPalSearchField {
+        display: inline-block;
+        width: 70%;
+        height: calc(2.25rem + 2px);
+        padding: 0.375rem 1.75rem 0.375rem 0.75rem;
+        line-height: 1.5;
+        color: #495057;
+        vertical-align: middle;
+        background: #fff;
+        background-size: 8px 10px;
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+        -webkit-appearance: none;
+        outline: #ced4da;
+    }
+
+    button,
+    input {
+        overflow: visible;
+    }
+
+    .searchField {
+        border-radius: 30px;
+    }
+
+
+
+    .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 1000;
+        display: none;
+        float: left;
+        min-width: 10rem;
+        padding: 0.5rem 0;
+        margin: 0.125rem 0 0;
+        font-size: 1rem;
+        color: #212529;
+        text-align: left;
+        list-style: none;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid rgba(0, 0, 0, .15);
+        border-radius: 0.25rem;
+    }
+</style>
+
+<body>
+    <header id="header" class="header-inner-pages">
+        <div class="header-con">
+            <div>
+                <!-- <div class="logo float-left logo-desktop"> -->
+                <!-- <object data="/static/images/logo_svg.svg" type="image/svg+xml" height="65px" width="100%"style="margin-top: -15px;"></object> -->
+                <!-- </div> -->
+                <div class="logo-mobile" style="height: 65px; width: 230px;">
+                    <a href="/"><img style="width: 100%; height: 100%;" src="readingroots.webp" alt=""></a>
+                </div>
+            </div>
+            <nav class="main-nav float-right d-none d-lg-block">
+                <ul>
+                    <li class="nav-item"><a href="/">Home</a></li>
+                    <li> <a href="/users/login/" class="nav-item">Sign in</a></li>
+                    <li> <a href="/users/signup/" class="nav-item">Sign up</a></li>
+                </ul>
+        </div>
+        </nav>
+    </header>
+
+
+
+
+
+    <section class="a">
+        <div class="container base-container" style="margin-top: 20px; margin-bottom: 50px;">
+
+            <!-- Filter Form  -->
+            <form method="GET" action="/books/filter-results/" style="margin-bottom: 40px;">
+                <!-- Search Box -->
+                <h1>A place where you can find all your favorite authors and characters</h1>
+                <div class="mb-4" style="display: flex; justify-content: center;padding :10px">
+                    <div class="mr-2">
+                        <label for="search" style="font-size: 14px;">Keyword Search</label>
+                        <div class="input-append" style="position: relative;">
+                            <i class="fa fa-search" style="position: absolute;top: 10px; left: 10px; opacity: .8;"></i>
+                            <input type="text" class="searchField" style="padding-left: 20px;
+                            font-size: 14px;
+                            height: 24px;
+                            margin-top: 6px;" name="search" value="" placeholder="Search by title or author">
+                        </div>
+                    </div>
+                    <!-- Genre Filter -->
+                    <div>
+                        <label for="genre" style="font-size: 14px;">Book Genre</label>
+                        <br>
+
+                        <button class="btn custom-select  text-dark bg-white  " type="button" id="dropdownMenuButton"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> All &nbsp; &nbsp;&nbsp;
+                            &nbsp;
+                            &nbsp; &nbsp;
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                            <div class="form-check">
+                                &nbsp;<input class="form-check-input checkvalues" type="checkbox" name='genre'
+                                    value="Biography" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Biography
+                                </label>
+
+                            </div>
+
+                            <div class="form-check">
+                                &nbsp;<input class="form-check-input checkvalues" type="checkbox" name='genre'
+                                    value="Business" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Business
+                                </label>
+
+                            </div>
+
+                            <div class="form-check">
+                                &nbsp;<input class="form-check-input checkvalues" type="checkbox" name='genre'
+                                    value="Children" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Children
+                                </label>
+
+                            </div>
+
+                            <div class="form-check">
+                                &nbsp;<input class="form-check-input checkvalues" type="checkbox" name='genre'
+                                    value="Classic" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Classic
+                                </label>
+
+                            </div>
+
+                            <div class="form-check">
+                                &nbsp;<input class="form-check-input checkvalues" type="checkbox" name='genre'
+                                    value="Comedy" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Comedy
+                                </label>
+
+                            </div>
+
+                            <div class="form-check">
+                                &nbsp;<input class="form-check-input checkvalues" type="checkbox" name='genre'
+                                    value="Fantasy" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Fantasy
+                                </label>
+
+                            </div>
+
+                            <div class="form-check">
+                                &nbsp;<input class="form-check-input checkvalues" type="checkbox" name='genre'
+                                    value="History" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    History
+                                </label>
+
+                            </div>
+
+                            <div class="form-check">
+                                &nbsp;<input class="form-check-input checkvalues" type="checkbox" name='genre'
+                                    value="Horror" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Horror
+                                </label>
+
+                            </div>
+
+                            <div class="form-check">
+                                &nbsp;<input class="form-check-input checkvalues" type="checkbox" name='genre'
+                                    value="Mystery" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Mystery
+                                </label>
+
+                            </div>
+
+                            <div class="form-check">
+                                &nbsp;<input class="form-check-input checkvalues" type="checkbox" name='genre'
+                                    value="Mythology" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Mythology
+                                </label>
+
+                            </div>
+
+                            <div class="form-check">
+                                &nbsp;<input class="form-check-input checkvalues" type="checkbox" name='genre'
+                                    value="Poetry" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Poetry
+                                </label>
+
+                            </div>
+
+                            <div class="form-check">
+                                &nbsp;<input class="form-check-input checkvalues" type="checkbox" name='genre'
+                                    value="Religion" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Religion
+                                </label>
+
+                            </div>
+
+                            <div class="form-check">
+                                &nbsp;<input class="form-check-input checkvalues" type="checkbox" name='genre'
+                                    value="Romance" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Romance
+                                </label>
+
+                            </div>
+
+                            <div class="form-check">
+                                &nbsp;<input class="form-check-input checkvalues" type="checkbox" name='genre'
+                                    value="SciFi" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    SciFi
+                                </label>
+
+                            </div>
+
+                            <div class="form-check">
+                                &nbsp;<input class="form-check-input checkvalues" type="checkbox" name='genre'
+                                    value="Self-Help" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Self-Help
+                                </label>
+
+                            </div>
+
+                            <div class="form-check">
+                                &nbsp;<input class="form-check-input checkvalues" type="checkbox" name='genre'
+                                    value="Spirituality" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Spirituality
+                                </label>
+
+                            </div>
+
+                            <div class="form-check">
+                                &nbsp;<input class="form-check-input checkvalues" type="checkbox" name='genre'
+                                    value="Thriller" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Thriller
+                                </label>
+
+                            </div>
+
+                            <div class="form-check">
+                                &nbsp;<input class="form-check-input checkvalues" type="checkbox" name='genre'
+                                    value="Non-Fiction" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Non-Fiction
+                                </label>
+
+                            </div>
+
+                            <div class="form-check">
+                                &nbsp;<input class="form-check-input checkvalues" type="checkbox" name='genre'
+                                    value="Fiction" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Fiction
+                                </label>
+
+                            </div>
+
+                            <div class="form-check">
+                                &nbsp;<input class="form-check-input checkvalues" type="checkbox" name='genre'
+                                    value="Others" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                    Others
+                                </label>
+
+                            </div> -->
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="separator mb-3"><span>USER RELATED SELECTION</span></div>
+
+                <div class="mb-4 userInfoFields" style="display: flex; flex-wrap: wrap; justify-content: center;">
+                    <div class="mr-2">
+                        <label for="state" style="font-size: 14px;">State</label><br>
+                        <select class="custom-select" id="state" name="state" style="font-size: 14px;">
+
+
+                            <option value="All">All</option>
+
+                            <option value="Andhra Pradesh">Andhra Pradesh</option>
+
+                            <option value="Bihar">Bihar</option>
+
+                            <option value="Chandigarh">Chandigarh</option>
+
+                            <option value="Chhattisgarh">Chhattisgarh</option>
+
+                            <option value="Delhi">Delhi</option>
+
+                            <option value="Goa">Goa</option>
+
+                            <option value="Haryana">Haryana</option>
+
+                            <option value="Himachal Pradesh">Himachal Pradesh</option>
+
+                            <option value="Jharkhand">Jharkhand</option>
+
+                            <option value="Karnataka">Karnataka</option>
+
+                            <option value="Kerala">Kerala</option>
+
+                            <option value="Madhya Pradesh">Madhya Pradesh</option>
+
+                            <option value="Maharashtra">Maharashtra</option>
+
+                            <option value="Odisha">Odisha</option>
+
+                            <option value="Punjab">Punjab</option>
+
+                            <option value="Rajasthan">Rajasthan</option>
+
+                            <option value="Telangana">Telangana</option>
+
+                            <option value="Tripura">Tripura</option>
+
+                            <option value="Uttar Pradesh">Uttar Pradesh</option>
+
+                            <option value="Uttarakhand">Uttarakhand</option>
+
+                            <option value="West Bengal">West Bengal</option>
+
+                        </select>
+                    </div>
+
+                    <div class="mr-2">
+                        <label for="city" style="font-size: 14px;">City</label><br>
+                        <select class="custom-select" id="city" name="city" style="font-size: 14px;">
+
+
+                            <option value="All">All</option>
+
+                            <option value="Agartala">Agartala</option>
+
+                            <option value="Ambala">Ambala</option>
+
+                            <option value="Ambala City">Ambala City</option>
+
+                            <option value="Baddi">Baddi</option>
+
+                            <option value="Bahadurgarh">Bahadurgarh</option>
+
+                            <option value="Ballabgarh">Ballabgarh</option>
+
+                            <option value="Bangalore">Bangalore</option>
+
+                            <option value="Bengaluru">Bengaluru</option>
+
+                            <option value="Bhilai">Bhilai</option>
+
+                            <option value="Bhubaneswar">Bhubaneswar</option>
+
+                            <option value="Chandausi">Chandausi</option>
+
+                            <option value="Chandigarh">Chandigarh</option>
+
+                            <option value="Dadri">Dadri</option>
+
+                            <option value="Dehradun">Dehradun</option>
+
+                            <option value="Delhi">Delhi</option>
+
+                            <option value="Deoband">Deoband</option>
+
+                            <option value="Dhampur">Dhampur</option>
+
+                            <option value="Dombivli">Dombivli</option>
+
+                            <option value="Dungarpur">Dungarpur</option>
+
+                            <option value="Durgapur">Durgapur</option>
+
+                            <option value="Eluru">Eluru</option>
+
+                            <option value="Ernakulam">Ernakulam</option>
+
+                            <option value="Faridabad">Faridabad</option>
+
+                            <option value="Gharaunda">Gharaunda</option>
+
+                            <option value="Ghaziabad">Ghaziabad</option>
+
+                            <option value="Gondia">Gondia</option>
+
+                            <option value="Gurgaon">Gurgaon</option>
+
+                            <option value="Gurugram">Gurugram</option>
+
+                            <option value="Gwalior">Gwalior</option>
+
+                            <option value="Haldwani">Haldwani</option>
+
+                            <option value="Hanumangarh Jn.">Hanumangarh Jn.</option>
+
+                            <option value="Haridwar">Haridwar</option>
+
+                            <option value="Hyderabad">Hyderabad</option>
+
+                            <option value="Indore">Indore</option>
+
+                            <option value="Jaipur">Jaipur</option>
+
+                            <option value="Jalandhar">Jalandhar</option>
+
+                            <option value="Jamshedpur">Jamshedpur</option>
+
+                            <option value="Jhansi">Jhansi</option>
+
+                            <option value="Kanpur">Kanpur</option>
+
+                            <option value="Karnal">Karnal</option>
+
+                            <option value="Kolkata">Kolkata</option>
+
+                            <option value="Kota">Kota</option>
+
+                            <option value="Kullu">Kullu</option>
+
+                            <option value="Kurukshetra">Kurukshetra</option>
+
+                            <option value="Lucknow">Lucknow</option>
+
+                            <option value="Mahendragarh">Mahendragarh</option>
+
+                            <option value="Mathura">Mathura</option>
+
+                            <option value="Meerut">Meerut</option>
+
+                            <option value="Moga">Moga</option>
+
+                            <option value="Moradabad">Moradabad</option>
+
+                            <option value="Mumbai">Mumbai</option>
+
+                            <option value="Muzaffarpur">Muzaffarpur</option>
+
+                            <option value="Narwana">Narwana</option>
+
+                            <option value="Nashik">Nashik</option>
+
+                            <option value="New Delhi">New Delhi</option>
+
+                            <option value="Noida">Noida</option>
+
+                            <option value="Panipat">Panipat</option>
+
+                            <option value="Prayagraj">Prayagraj</option>
+
+                            <option value="Proddatur">Proddatur</option>
+
+                            <option value="Pune">Pune</option>
+
+                            <option value="Puri">Puri</option>
+
+                            <option value="Rewari">Rewari</option>
+
+                            <option value="Rohtak">Rohtak</option>
+
+                            <option value="Sasaram">Sasaram</option>
+
+                            <option value="Satna">Satna</option>
+
+                            <option value="Siliguri">Siliguri</option>
+
+                            <option value="Sonipat">Sonipat</option>
+
+                            <option value="Tada">Tada</option>
+
+                            <option value="Varanasi">Varanasi</option>
+
+                            <option value="Visakhapatnam">Visakhapatnam</option>
+
+                            <option value="Vizianagaram">Vizianagaram</option>
+
+                            <option value="Yamunanagar">Yamunanagar</option>
+
+                            <option value="Zuarinagar">Zuarinagar</option>
+
+                        </select>
+                    </div>
+
+                    <div class="mr-2">
+                        <label for="education" style="font-size: 14px;">Education</label><br>
+                        <select class="custom-select" id="education" name="education" style="font-size: 14px;">
+
+
+                            <option value="All">All</option>
+
+                            <option value="B.Tech in Computer Engineering from NIT Kurukshetra">B.Tech in Computer
+                                Engineering from NIT Kurukshetra</option>
+
+                            <option value="Delhi University">Delhi University</option>
+
+                            <option value="Kurukshetra University">Kurukshetra University</option>
+
+                            <option value="Mechanical Engineering NIT Kurukshetra">Mechanical Engineering NIT
+                                Kurukshetra</option>
+
+                            <option value="NIT Kurukshetra">NIT Kurukshetra</option>
+
+                            <option value="NIT Raipur">NIT Raipur</option>
+
+                            <option value="NIT, Kurukshetra">NIT, Kurukshetra</option>
+
+                            <option value="National Institute of Technology Kurukshetra">National Institute of
+                                Technology Kurukshetra</option>
+
+                            <option value="Nit Jalandhar">Nit Jalandhar</option>
+
+                            <option value="Nit kurukshetra">Nit kurukshetra</option>
+
+                            <option value="Nit raipur, Metallurgical Engg.">Nit raipur, Metallurgical Engg.</option>
+
+                            <option value="PEC">PEC</option>
+
+                            <option value="Salesian College (University Of North Bengal)">Salesian College (University
+                                Of North Bengal)</option>
+
+                            <option value="University Of Delhi">University Of Delhi</option>
+
+                        </select>
+                    </div>
+
+                    <div class="mr-2">
+                        <label for="work" style="font-size: 14px;">Work</label><br>
+                        <select class="custom-select" id="work" name="work" style="font-size: 14px;">
+
+
+                            <option vlaue="All">All</option>
+
+                            <option vlaue="Analog Devices">Analog Devices</option>
+
+                            <option vlaue="Cadence">Cadence</option>
+
+                            <option vlaue="Capgemini">Capgemini</option>
+
+                            <option vlaue="Delhi">Delhi</option>
+
+                            <option vlaue="Deutsche Bank">Deutsche Bank</option>
+
+                            <option vlaue="Dunnhumby">Dunnhumby</option>
+
+                            <option vlaue="ESQ Management Solutions">ESQ Management Solutions</option>
+
+                            <option vlaue="Ericsson">Ericsson</option>
+
+                            <option vlaue="Freelancer">Freelancer</option>
+
+                            <option vlaue="Hero">Hero</option>
+
+                            <option vlaue="Hero Motocorp">Hero Motocorp</option>
+
+                            <option vlaue="Optum">Optum</option>
+
+                            <option vlaue="Optum Global Solutions">Optum Global Solutions</option>
+
+                            <option vlaue="Thermo Fisher Scientific">Thermo Fisher Scientific</option>
+
+                            <option vlaue="United Airlines">United Airlines</option>
+
+                            <option vlaue="UnitedHealth Group">UnitedHealth Group</option>
+
+                            <option vlaue="WNS Global Services Pvt Ltd">WNS Global Services Pvt Ltd</option>
+
+                        </select>
+                    </div>
+
+                    <div>
+                        <br>
+                        <div style="display: inline-block;">
+
+                            <div class="checkbox-custom ml-2">
+                                <label>
+                                    <input type="checkbox" class="mr-2 mt-2" id="available" name="available"
+                                        value="checked">
+                                    <b></b>
+                                    <span for="available">Available Only</span>
+                                </label>
+                            </div>
+                        </div>
+                        <button class="btn btn-brand ml-2" type="submit">Filter</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </section>
+    <!-- Book Cards -->
+
+    <section class="b">
+        <p>Total Books: <span style="color: #A2671A; font-weight: bold;">1230</span></p>
+
+
+        <div class="container_1">
+            <div class="box">
+
+                <div class="box_1a">
+                    <div class="box_1">
+                        <div class="flipCard">
+                            <div class="innerCard">
+                                <div class="frontCard">
+                                    <img id="cover" src="1.jpg" alt="">
+                                </div>
+                                <div class="cardBack">
+                                    <h2>Emotion and Relationship</h2><br>
+                                    <h4>By Sadhguru</h4>
+                                </div>
+                            </div>
+                            <div class="box_ab"><button>Request Boook</button>
+                                <button>-></button></div>
+                        </div>
+                    </div>
+                    <div class="box_1">
+                        <div class="flipCard">
+                            <div class="innerCard">
+                                <div class="frontCard">
+                                    <img id="cover" src="2.jpg" alt="">
+                                </div>
+                                <div class="cardBack">
+                                    <h2>Emotion and Relationship</h2><br>
+                                    <h4>By Sadhguru</h4>
+                                </div>
+                            </div>
+                            <div class="box_ab"><button>Request Boook</button>
+                                <button>-></button></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box_1a">
+                    <div class="box_1">
+                        <div class="flipCard">
+                            <div class="innerCard">
+                                <div class="frontCard">
+                                    <img id="cover" src="3.jpg" alt="">
+                                </div>
+                                <div class="cardBack">
+                                    <h2>Emotion and Relationship</h2><br>
+                                    <h4>By Sadhguru</h4>
+                                </div>
+                            </div>
+                            <div class="box_ab"><button>Request Boook</button>
+                                <button>-></button></div>
+                        </div>
+                    </div>
+                    <div class="box_1">
+                        <div class="flipCard">
+                            <div class="innerCard">
+                                <div class="frontCard">
+                                    <img id="cover" src="4.jpg" alt="">
+                                </div>
+                                <div class="cardBack">
+                                    <h2>Emotion and Relationship</h2><br>
+                                    <h4>By Sadhguru</h4>
+                                </div>
+                            </div>
+                            <div class="box_ab"><button>Request Boook</button>
+                                <button>-></button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+
+                <div class="box_1a">
+                    <div class="box_1">
+                        <div class="flipCard">
+                            <div class="innerCard">
+                                <div class="frontCard">
+                                    <img id="cover" src="1.jpg" alt="">
+                                </div>
+                                <div class="cardBack">
+                                    <h2>Emotion and Relationship</h2><br>
+                                    <h4>By Sadhguru</h4>
+                                </div>
+                            </div>
+                            <div class="box_ab"><button>Request Boook</button>
+                                <button>-></button></div>
+                        </div>
+                    </div>
+                    <div class="box_1">
+                        <div class="flipCard">
+                            <div class="innerCard">
+                                <div class="frontCard">
+                                    <img id="cover" src="2.jpg" alt="">
+                                </div>
+                                <div class="cardBack">
+                                    <h2>Emotion and Relationship</h2><br>
+                                    <h4>By Sadhguru</h4>
+                                </div>
+                            </div>
+                            <div class="box_ab"><button>Request Boook</button>
+                                <button>-></button></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box_1a">
+                    <div class="box_1">
+                        <div class="flipCard">
+                            <div class="innerCard">
+                                <div class="frontCard">
+                                    <img id="cover" src="3.jpg" alt="">
+                                </div>
+                                <div class="cardBack">
+                                    <h2>Emotion and Relationship</h2><br>
+                                    <h4>By Sadhguru</h4>
+                                </div>
+                            </div>
+                            <div class="box_ab"><button>Request Boook</button>
+                                <button>-></button></div>
+                        </div>
+                    </div>
+                    <div class="box_1">
+                        <div class="flipCard">
+                            <div class="innerCard">
+                                <div class="frontCard">
+                                    <img id="cover" src="4.jpg" alt="">
+                                </div>
+                                <div class="cardBack">
+                                    <h2>Emotion and Relationship</h2><br>
+                                    <h4>By Sadhguru</h4>
+                                </div>
+                            </div>
+                            <div class="box_ab"><button>Request Boook</button>
+                                <button>-></button></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="box">
+                <div class="box_1">
+                    <div class="flipCard">
+                        <div class="innerCard">
+                            <div class="frontCard">
+                                <img id="cover" src="1.jpg" alt="">
+                            </div>
+                            <div class="cardBack">
+                                <h2>Emotion and Relationship</h2><br>
+                                <h4>By Sadhguru</h4>
+                            </div>
+                        </div>
+                        <div class="box_ab"><button>Request Boook</button>
+                            <button>-></button></div>
+                    </div>
+                </div>
+                <div class="box_1">
+                    <div class="flipCard">
+                        <div class="innerCard">
+                            <div class="frontCard">
+                                <img id="cover" src="2.jpg" alt="">
+                            </div>
+                            <div class="cardBack">
+                                <h2>Emotion and Relationship</h2><br>
+                                <h4>By Sadhguru</h4>
+                            </div>
+                        </div>
+                        <div class="box_ab"><button>Request Boook</button>
+                            <button>-></button></div>
+                    </div>
+                </div>
+                <div class="box_1">
+                    <div class="flipCard">
+                        <div class="innerCard">
+                            <div class="frontCard">
+                                <img id="cover" src="3.jpg" alt="">
+                            </div>
+                            <div class="cardBack">
+                                <h2>Emotion and Relationship</h2><br>
+                                <h4>By Sadhguru</h4>
+                            </div>
+                        </div>
+                        <div class="box_ab"><button>Request Boook</button>
+                            <button>-></button></div>
+                    </div>
+                </div>
+                <div class="box_1">
+                    <div class="flipCard">
+                        <div class="innerCard">
+                            <div class="frontCard">
+                                <img id="cover" src="4.jpg" alt="">
+                            </div>
+                            <div class="cardBack">
+                                <h2>Emotion and Relationship</h2><br>
+                                <h4>By Sadhguru</h4>
+                            </div>
+                        </div>
+                        <div class="box_ab"><button>Request Boook</button>
+                            <button>-></button></div>
+                    </div>
+                </div>
+
+            </div> -->
+            <!-- <div class="box">
+                <div class="box_1">
+                    <div class="flipCard">
+                        <div class="innerCard">
+                            <div class="frontCard">
+                                <img id="cover" src="1.jpg" alt="">
+                            </div>
+                            <div class="cardBack">
+                                <h2>Emotion and Relationship</h2><br>
+                                <h4>By Sadhguru</h4>
+                            </div>
+                        </div>
+                        <div class="box_ab"><button>Request Boook</button>
+                            <button>-></button></div>
+                    </div>
+                </div>
+                <div class="box_1">
+                    <div class="flipCard">
+                        <div class="innerCard">
+                            <div class="frontCard">
+                                <img id="cover" src="2.jpg" alt="">
+                            </div>
+                            <div class="cardBack">
+                                <h2>Emotion and Relationship</h2><br>
+                                <h4>By Sadhguru</h4>
+                            </div>
+                        </div>
+                        <div class="box_ab"><button>Request Boook</button>
+                            <button>-></button></div>
+                    </div>
+                </div>
+                <div class="box_1">
+                    <div class="flipCard">
+                        <div class="innerCard">
+                            <div class="frontCard">
+                                <img id="cover" src="3.jpg" alt="">
+                            </div>
+                            <div class="cardBack">
+                                <h2>Emotion and Relationship</h2><br>
+                                <h4>By Sadhguru</h4>
+                            </div>
+                        </div>
+                        <div class="box_ab"><button>Request Boook</button>
+                            <button>-></button></div>
+                    </div>
+                </div>
+                <div class="box_1">
+                    <div class="flipCard">
+                        <div class="innerCard">
+                            <div class="frontCard">
+                                <img id="cover" src="4.jpg" alt="">
+                            </div>
+                            <div class="cardBack">
+                                <h2>Emotion and Relationship</h2><br>
+                                <h4>By Sadhguru</h4>
+                            </div>
+                        </div>
+                        <div class="box_ab"><button>Request Boook</button>
+                            <button>-></button></div>
+                    </div>
+                </div>
+
+            </div> -->
+
+
+
+
+
+            <div class="row">
+            </div>
+
+            <br><br>
+            <nav aria-label="Page navigation example">
+
+                <ul class="pagination">
+
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#">&laquo;</a>
+                    </li>
+                    <li class="page-item"><a class="page-link active">1</a></li>
+                    <li class="page-item">
+                        <a class="page-link" style="color: #8b5815;" href="?page=2">2</a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" style="color: #8b5815;" href="?page=3">3</a>
+                    </li>
+                    <li class="page-item disabled"><a class="page-link" href="#">&hellip;</a></li>
+                    <li class="page-item">
+                        <a style="color: #8b5815;" class="page-link" href="?page=2">
+                            &raquo;</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+
+
+
+
+
+    <footer id="footer">
+        <div class="footer-top" style=" padding: 0px 0 10px 0;">
+            <div class="container_4">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="footer-info">
+                            <h4
+                                style="color: whitesmoke;font-family: 'Lato', sans-serif;font-size: 25px;margin-bottom: 0%;">
+                                ReadingRoots
+                            </h4>
+                            <p style="font-size: 14px; color: #ced4da;line-height: 22px;">ReadingRoots is an
+                                initiative
+                                to empower the
+                                reading community
+                                and promote sustainable reading through
+                                the grateful act of book sharing.<br><br>
+
+
+                                <div class="mt-2 mb-4 socialIcons">
+                                    <div>
+                                        <span style="color: whitesmoke; font-size: 15px;">Follow Us:</span> &nbsp
+                                        &nbsp
+                                        <a href="https://www.linkedin.com/company/readingroots">
+                                            <iclass="fa fa-linkedin" aria-hidden="true">
+                                                </iclass=>
+                                        </a> &nbsp &nbsp
+                                        <a href="https://www.instagram.com/readingroots.in/"><i class="fa fa-instagram"
+                                                aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-2">
+                        <div class="footer-links">
+                            <h4 style="color: whitesmoke; font-family: 'Lato', sans-serif; font-size: 18px;">Useful
+                                Links.</h4>
+                            <ul style="margin-top: 18px; font-size: 14px;">
+                                <li><a style="color: #ced4da" href="/">Home</a></li>
+                                <li><a style="color: #ced4da" href="/#about">About Us</a></li>
+                                <li><a style="color: #ced4da" href="/terms-of-use/">Terms of Use</a></li>
+                                <li><a style="color: #ced4da" href="/privacy-policy/">Privacy Policy</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="footer-links">
+                            <h4 style="color: whitesmoke; font-family: 'Lato', sans-serif; font-size: 18px;">Contact
+                                Us.
+                            </h4>
+                            <p style="color: #ced4da; font-size: 14px;line-height: 22px">
+                                Please contact us if you have any query, wish to share your feedbackor have a
+                                suggestion
+                                to improve your experience<br>
+                                <div class="mt-3">
+                                    <strong style="color: whitesmoke; font-size: 15px;">Email:</strong> <span
+                                        style="color: #ced4da">readingroots.contact@gmail.com</span>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div class="container_2">
+        <div class="copyright">&copy; Copyright <strong>ReadingRoots</strong>. <span
+                style="color: #413E66; font-size: 14px;line-height: 22px"> All Rights Reserved.</span>
+        </div>
+        <div class="credits">Designed by <a href="https://bootstrapmade.com/"> <span
+                    style="color: #413E66; font-size: 14px;line-height: 22px"> BootstrapMade.</span></a>
+        </div>
+    </div>
+
+    <!-- End  Footer -->
+    <div id="preloader"></div>
+
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+    <!-- Vendor JS Files -->
+    <!-- <!-- <script src="/static/vendor/jquery/jquery.min.js"></script> -->
+    <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="/static/vendor/php-email-form/validate.js"></script>
+    <script src="/static/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="/static/vendor/counterup/counterup.min.js"></script>
+    <script src="/static/vendor/venobox/venobox.min.js"></script>
+    <script src="/static/vendor/mobile-nav/mobile-nav.js"></script>
+    <script src="/static/vendor/wow/wow.min.js"></script>
+    <script src="/static/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="/static/vendor/waypoints/jquery.waypoints.min.js"></script> -->
+
+    <!-- Template Main JS File -->
+    <script src="/static/js/main.js"></script>
+
+
+</body>
+
+</html>

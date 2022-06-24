@@ -1,0 +1,28 @@
+
+    .pagination {
+        display: inline-flex;
+        padding-left: 0;
+        list-style: none;
+        border-radius: 0.25rem;
+        /* border: 2px solid #212529; */
+        background-color: aliceblue;
+    }
+
+
+    .pagination li {
+        text-decoration: none;
+        list-style: none;
+        padding: 8px 16px;
+        margin: 2px;
+        float: left;
+        width: auto;
+        border: none;
+        display: block;
+        outline: 0;
+        border: 2px solid #ced4da;
+    }
+
+    .pagination li a {
+        text-decoration: none;
+        list-style: none;
+    }
